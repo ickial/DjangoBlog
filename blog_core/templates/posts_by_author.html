@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% block content %}
+        {% for i in published_posts_by_author %}
+            <br><h1>{{ i.title }}</h1>
+            {{ i.body }}<br>
+           <br>CREATED BY:  {{ i.author }}<br><br><hr>
+            {{ i.created }}<br>
+        {% endfor %}
+
+    {% endblock content%}
+</body>
+</html>
