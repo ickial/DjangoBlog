@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Post</title>
+</head>
+<body>
+    {% block content %}
+        <h1>{{ my_post.title}}</h1>
+        <hr>
+        {{ my_post.body}}<br><br><hr>
+        <br>{{ my_post.publish }}
+        <br>{{ my_post.author }}
+    {% endblock content %}
+</body>
+</html>
