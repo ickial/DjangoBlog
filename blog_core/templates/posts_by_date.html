@@ -6,11 +6,11 @@
 </head>
 <body>
     {% block content %}
-    {% for i in posts %}
-        <br><h1>{{ i.title }}</h1>
-            {{ i.body }}<br>
-           <br>CREATED BY:  {{ i.author }}<hr>
-            {{ i.publish }}<br>
+        {% for i in posts %}
+            <ol><h1>{{ i.title }}</h1>
+            <sub>Published: {{ i.publish }}</sub>
+            <hr>{{ i.body }}<hr>
+            <sub>by:  {{ i.author }}</sub></ol>
         {% endfor %}
     {% endblock content %}
 </body>

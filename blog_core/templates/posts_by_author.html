@@ -7,12 +7,11 @@
 <body>
     {% block content %}
         {% for i in published_posts_by_author %}
-            <br><h1>{{ i.title }}</h1>
-            {{ i.body }}<br>
-           <br>CREATED BY:  {{ i.author }}<hr>
-            {{ i.publish }}<br>
+            <ol><h1>{{ i.title }}</h1>
+            <sub>by:  {{ i.author }}</sub>
+            <hr>{{ i.body }}<hr>
+            <sub>Published: {{ i.publish }}</sub></ol>
         {% endfor %}
-
     {% endblock content%}
 </body>
 </html>

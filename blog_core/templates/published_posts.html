@@ -5,14 +5,13 @@
     <title>Posts</title>
 </head>
 <body>
- {% block content %}
-     {% for i in published_posts %}
-         <h1>{{ i.title }}</h1>
-         <p>{{ i.body }}</p>
-         <hr>{{ i.author }}
-         {{ i.publish }}<hr>
-         <br>
-     {%  endfor %}
-        {% endblock content %}
+    {% block content %}
+        {% for i in published_posts %}
+            <ol><h1>{{ i.title }}</h1>
+            <hr>{{ i.body }}<br><hr>
+            <sub>Published: {{ i.publish }} by {{ i.author }}</sub></ol>
+        {%  endfor %}
+    {% endblock content %}
 </body>
 </html>
+                  

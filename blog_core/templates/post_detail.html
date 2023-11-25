@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Post</title>
 </head>
 <body>
     {% block content %}
-        <h1>{{ my_post.title}}</h1>
-        <hr>
-        {{ my_post.body}}<br><br><hr>
-        <br>{{ my_post.publish }}
-        <br>{{ my_post.author }}
+        <ol><h1>{{ my_post.title}}</h1>
+            <hr>{{ my_post.body}}<br><br><hr>
+        <sub>Published: {{ my_post.publish }} by: {{ my_post.author }}</sub></ol>
     {% endblock content %}
 </body>
 </html>
