@@ -1,16 +1,24 @@
+{% load format_date %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Posts</title>
 </head>
+<style>
+    .container {font-size: 24px; margin: 25px; display: flex; justify-content: center;}
+</style>
 <body>
     {% block content %}
-        {% for i in published_posts %}
-            <ol><h1>{{ i.title }}</h1>
-            <hr>{{ i.body }}<br><hr>
-            <sub>Published: {{ i.publish }} by {{ i.author }}</sub></ol>
+        {% for i in posts.object_list %}
+                <ol><h1><a href="{{ i.get_absolute_url }}">{{ i.title }}</a></h1>
+                <hr>{{ i.body }}<br><hr>
+                    <a href="{% url 'blog_core:publish_date_posts' year_str=i.publish|format_date:'year' month_str=i.publish|format_date:'month' %}">{{ i.publish|format_date:'all_date' }}</a>
+                    by <a href="{% url 'blog_core:posts_by_author' username_str=i.author %}">{{ i.author }}</a></ol>
         {%  endfor %}
+        <div class="container">
+                {% include "pagination.html" with page=posts %}
+        </div>
     {% endblock content %}
 </body>
 </html>

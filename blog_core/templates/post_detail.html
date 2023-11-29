@@ -8,7 +8,7 @@
     {% block content %}
         <ol><h1>{{ my_post.title}}</h1>
             <hr>{{ my_post.body}}<br><br><hr>
-        <sub>Published: {{ my_post.publish }} by: {{ my_post.author }}</sub></ol>
+            <sub>Published: <a href="">{{ my_post.publish }}</a> by: <a href="">{{ my_post.author }}</a></sub></ol>
     {% endblock content %}
 </body>
 </html>

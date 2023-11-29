@@ -11,6 +11,3 @@ class PostAdmin(admin.ModelAdmin):
     ordering = ['status', 'publish']
 
 admin.site.register(Post, PostAdmin)
-
-
-# Register your models here.

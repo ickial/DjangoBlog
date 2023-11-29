@@ -7,11 +7,12 @@
 <body>
     {% block content %}
         {% for i in posts %}
-            <ol><h1>{{ i.title }}</h1>
-            <sub>Published: {{ i.publish }}</sub>
+            <ol><h1><a href="">{{ i.title }}</a></h1>
+                <sub>Published: {{ i.publish }}</sub>
             <hr>{{ i.body }}<hr>
-            <sub>by:  {{ i.author }}</sub></ol>
+                <sub>by:  <a href="">{{ i.author }}</a></sub></ol>
         {% endfor %}
+        {% include "pagination.html" with page=posts %}<br>
     {% endblock content %}
 </body>
 </html>
