@@ -1,18 +1,32 @@
+{% load format_date %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Date publish</title>
 </head>
+<style>
+    .container {font-size: 24px; margin: 25px; display: flex; justify-content: center;}
+    .body {font-size: 16px; margin: 1%; display: flex; justify-content: left;}
+    .navigation {font-size: 16px; display: flex; justify-content: center; background-color: darkcyan}
+</style>
 <body>
+<div class="navigation">
+<nav><h2>{{ 'Sorted by date' }}</h2></nav>
+</div>
     {% block content %}
+        <a href="{% url 'blog_core:post_list' %}"><h2>{{ '&#129032;Return to all posts' }}</h2></a>
+        <div class="body">
         {% for i in posts %}
-            <ol><h1><a href="">{{ i.title }}</a></h1>
-                <sub>Published: {{ i.publish }}</sub>
+            <ol><h1><a href="{{ i.get_absolute_url }}">{{ i.title }}</a></h1>
+                <sub>Published: {{ i.publish|format_date:'all_date' }}</sub>
             <hr>{{ i.body }}<hr>
-                <sub>by:  <a href="">{{ i.author }}</a></sub></ol>
+                <sub>by:  <a href="{% url 'blog_core:posts_by_author' username_str=i.author %}">{{ i.author }}</a></sub></ol>
         {% endfor %}
-        {% include "pagination.html" with page=posts %}<br>
+        </div>
+        <div class="container">
+            {% include "pagination.html" with page=posts %}
+        </div>
     {% endblock content %}
 </body>
 </html>

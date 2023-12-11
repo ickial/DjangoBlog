@@ -21,10 +21,7 @@ def post_list(request):
         posts = paginator.page(1)
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
-    return render(request,
-                  'published_posts.html',
-                  {'page': page,
-                   'posts': posts})
+    return render(request,'published_posts.html',{'page': page,'posts': posts})
 
 
 def post_detail(request, post):

@@ -7,17 +7,26 @@
 </head>
 <style>
     .container {font-size: 24px; margin: 25px; display: flex; justify-content: center;}
+    .body {font-size: 16px; margin: 2%; display: block; justify-content: center;}
+    .navigation {font-size: 16px; display: flex; justify-content: center; background-color: darkcyan}
+    .title {font-size: 16px; margin: 1%; display: flex; justify-content: center;}
 </style>
 <body>
     {% block content %}
+        <div class="navigation">
+            <nav><h2>{{ 'All posts' }}</h2></nav>
+        </div>
         {% for i in posts.object_list %}
-                <ol><h1><a href="{{ i.get_absolute_url }}">{{ i.title }}</a></h1>
-                <hr>{{ i.body }}<br><hr>
-                    <a href="{% url 'blog_core:publish_date_posts' year_str=i.publish|format_date:'year' month_str=i.publish|format_date:'month' %}">{{ i.publish|format_date:'all_date' }}</a>
-                    by <a href="{% url 'blog_core:posts_by_author' username_str=i.author %}">{{ i.author }}</a></ol>
+            <div class="title">
+            <section><h1><a href="{{ i.get_absolute_url }}">{{ i.title }}</a></h1></section>
+            </div>
+            <div class="body">
+                <hr>{{ i.body }}<br><hr><sub><a href="{% url 'blog_core:publish_date_posts' year_str=i.publish|format_date:'year' month_str=i.publish|format_date:'month' %}">{{ i.publish|format_date:'all_date' }}</a>
+                    by <a href="{% url 'blog_core:posts_by_author' username_str=i.author %}">{{ i.author }}</a></sub>
+            </div>
         {%  endfor %}
         <div class="container">
-                {% include "pagination.html" with page=posts %}
+            {% include "pagination.html" with page=posts %}
         </div>
     {% endblock content %}
 </body>

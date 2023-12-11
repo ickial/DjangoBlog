@@ -1,14 +1,25 @@
+{% load format_date %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Post</title>
 </head>
+<style>
+    .body {font-size: 18px; margin: 3%; justify-content: center;}
+    .navigation {font-size: 16px; display: flex; justify-content: center; background-color: darkcyan}
+</style>
 <body>
+<div class="navigation" >
+    <nav><h1>{{ my_post.title}}</h1></nav>
+</div>
     {% block content %}
-        <ol><h1>{{ my_post.title}}</h1>
-            <hr>{{ my_post.body}}<br><br><hr>
-            <sub>Published: <a href="">{{ my_post.publish }}</a> by: <a href="">{{ my_post.author }}</a></sub></ol>
+        <a href="{% url 'blog_core:post_list' %}"><h2>{{ '&#129032;Return to all posts' }}</h2></a>
+        <div class="body">
+        <hr>{{ my_post.body}}<hr>
+        <sub>Published: <a href="{% url 'blog_core:publish_date_posts' year_str=my_post.publish|format_date:'year' month_str=my_post.publish|format_date:'month' %}">{{ my_post.publish|format_date:'all_date' }}</a>
+                by: <a href="{% url 'blog_core:posts_by_author' username_str=my_post.author %}">{{ my_post.author }}</a></sub>
+        </div>
     {% endblock content %}
 </body>
 </html>
